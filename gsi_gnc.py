@@ -1,5 +1,6 @@
 from tkinter import *
-import guru
+import tkinter as tk
+import guru,instruction,contact
 
 root = Tk()
 root.geometry('1920x1080')
@@ -10,19 +11,34 @@ def command():
    s=sheet.get()
    f=file.get()
    p=path.get()
+   l=link.get()
    while("" in x):
       x.remove('')
-   guru.funcGnc(x,s,f,p)
+   guru.funcGnc(x,s,f,p,l)
    for a,b in zip(guru.an,guru.ab):
          na=a
          re=b
          op_text.insert(INSERT, na+" "+re+"\n")
-button = Button(root, text="OK", command=command)
+def inst():
+   instruction.ins()
+def contac():
+   contact.cont()
+ins_button = tk.Button(root, text="INSTRUCTONS", bg="grey", font=(
+    "serif", 12, 'bold'), activebackground="#E2DFD2", command=inst)
+ins_button.place(x=10, y=20)
+contact_button = Button(root, text="CONTACT",bg="grey", font=(
+    "serif", 12, 'bold'), activebackground="#E2DFD2", command=contac)
+contact_button.place(x=150, y=19.5)
+button = Button(root, text="OK", bg="grey", font=(
+    "serif", 12, 'bold'), activebackground="#E2DFD2", command=command)
 head = Label(text = "GRADING SNIPPET AND INVESTIGATOR - GURUNANAK COLLEGE OF ARTS AND SCIENCE",font=20,fg="#000").place(x = 360,y = 20)
 auth= Label(text = "AUTHOR : DINEESH R").place(x = 1190,y = 20)
 regno = Text(root,width=50,height=20)
 regno.place(x=170, y=300)
-button.place(x=670, y=650)
+button.place(x=650, y=650)
+link_ = Label(text = "LINK :").place(x = 40,y = 110) 
+link = Entry(root)
+link.place(x=170, y=110)
 sheet_name = Label(text = "SHEET NAME :").place(x = 40,y = 140) 
 sheet = Entry(root)
 sheet.place(x=170, y=140)
