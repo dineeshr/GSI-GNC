@@ -11,7 +11,7 @@ wb=Workbook()
 print("************************************")
 print("* GRADING SNIPPET AND INVESTIGATOR *")
 print("************************************")
-def funcGnc(x,sh,fn,p):
+def funcGnc(x,sh,fn,p,l):
     global name,rn,an,ab
     an=[]
     ab=[]
@@ -29,10 +29,16 @@ def funcGnc(x,sh,fn,p):
         'regno': xx,
         'button': 'Get Marks'
         }
-        url = 'http://results.worldcolleges.info/gncresults/nov2023/display.php'
+        url = l
+        if "/index.php" in l:
+                link1=url.replace("/index.php","/display.php")
+        elif "index.php" in l:
+                link1=url.replace("index.php","/display.php")
+        elif "/index.php/" in l:
+                link1=url.replace("/index.php/","/display.php")
         data = urlencode(payload)
         data = data.encode('ascii')
-        req = Request(url,data)
+        req = Request(link1,data)
         req.add_header('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1')
         res = urlopen(req)
         lxml = BeautifulSoup(res, 'html.parser')
